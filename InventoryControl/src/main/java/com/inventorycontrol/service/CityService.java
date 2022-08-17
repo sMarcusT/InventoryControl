@@ -1,5 +1,6 @@
 package com.inventorycontrol.service;
 
+import com.inventorycontrol.exception.DataAlreadyRegisteredException;
 import com.inventorycontrol.model.CityModel;
 import com.inventorycontrol.repository.CityRepository;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class CityService {
     public CityModel save(CityModel cityModel) {
 
         if (cityRepository.existsByCityName(cityModel.getCityName())) {
-            throw new NoResultException("Cidade informada já existe no sistema.");
+            throw new DataAlreadyRegisteredException("Cidade informada já existe no sistema.");
         }
 
         return cityRepository.save(cityModel);
