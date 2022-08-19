@@ -1,6 +1,6 @@
 package com.inventorycontrol.exception.handler;
 
-import com.smartpos.exception.DataAlreadyRegisteredException;
+import com.inventorycontrol.exception.DataAlreadyRegisteredException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

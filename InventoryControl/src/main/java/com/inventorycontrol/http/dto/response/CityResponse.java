@@ -13,6 +13,8 @@ import java.util.UUID;
 @Data
 public class CityResponse {
 
+    private UUID cityId;
+
     private String cityName;
 
     private String uf;

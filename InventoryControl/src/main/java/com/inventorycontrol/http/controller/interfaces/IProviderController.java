@@ -1,7 +1,9 @@
 package com.inventorycontrol.http.controller.interfaces;
 
 import com.inventorycontrol.http.dto.request.CityRequest;
+import com.inventorycontrol.http.dto.request.ProviderRequest;
 import com.inventorycontrol.http.dto.response.CityResponse;
+import com.inventorycontrol.http.dto.response.ProviderResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -16,25 +18,32 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Cidades")
+@Tag(name = "Fornecedores")
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/city")
+@RequestMapping("/provider")
 @Validated
-public interface ICityController {
+public interface IProviderController {
 
-    @Operation(summary = "Salva uma nova cidade.")
+    @Operation(summary = "Salva um novo fornecedor.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
-                    description = "Caso a cidade seja salva com sucesso.",
+                    description = "Caso o fornecedor seja armazenado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "cityName": "Fortaleza",
-                                              "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -60,7 +69,7 @@ public interface ICityController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso a cidade já esteja salva no sistema.",
+                    description = "Caso o fornecedor já esteja armazenado no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -70,7 +79,7 @@ public interface ICityController {
                                                  "status": 400,
                                                  "type": "http://localhost:8082/api/inventorycontrol/documentation",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Cidade já está armazenada no sistema."
+                                                 "detail": "Fornecedor já está armazenado no sistema."
                                             }
                                             """
                             )
@@ -84,7 +93,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -96,38 +105,52 @@ public interface ICityController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para salvar uma nova cidade.
+                    Dados para salvar um novo fornecedor.
                     """,
             content = @Content(
                     mediaType = "application/json",
                     examples = @ExampleObject(
                             value = """
                                     {
-                                      "cityName": "Fortaleza",
-                                      "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                     }
                                     """
                     )
             )
     )
     @PostMapping
-    ResponseEntity<CityResponse> save(@RequestBody @Valid CityRequest cityRequest);
+    ResponseEntity<ProviderResponse> save(@RequestBody @Valid ProviderRequest providerRequest);
 
-    @Operation(summary = "Atualiza a cidade por ID.", description = """
-            Atualiza a cidade passando o ID na URL.
+    @Operation(summary = "Atualiza o fornecedor por ID.", description = """
+            Atualiza o fornecedor passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso a cidade seja alterada com sucesso.",
+                    description = "Caso o fornecedor seja alterado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
                                               "cityId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b",
-                                              "cityName": "Fortaleza",
-                                              "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -145,7 +168,7 @@ public interface ICityController {
                                                  "status": 404,
                                                  "type": "http://localhost:8082/api/inventorycontrol/documentation",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Cidade não está armazenada no sistema."
+                                                 "detail": "Fornecedor não está armazenado no sistema."
                                             }
                                             """
                             )
@@ -153,7 +176,7 @@ public interface ICityController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso a cidade já esteja salva no sistema.",
+                    description = "Caso o fornecedor já esteja armazenado no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -163,7 +186,7 @@ public interface ICityController {
                                                  "status": 400,
                                                  "type": "http://localhost:8082/api/inventorycontrol/documentation",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Já existe uma cidade salva com esse código."
+                                                 "detail": "Já existe um fornecedor armazenado com esse código."
                                             }
                                             """
                             )
@@ -195,7 +218,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -207,25 +230,32 @@ public interface ICityController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para atualizar uma cidade.
+                    Dados para atualizar um fornecedor.
                     """,
             content = @Content(
                     mediaType = "application/json",
                     examples = @ExampleObject(
                             value = """
                                     {
-                                      "cityName": "Fortaleza",
-                                      "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                     }
                                     """
                     )
             )
     )
-    @PutMapping("/{cityId}")
-    ResponseEntity<CityResponse> update(@RequestBody @Valid CityRequest cityRequest, @PathVariable String cityId);
+    @PutMapping("/{providerId}")
+    ResponseEntity<ProviderResponse> update(@RequestBody @Valid ProviderRequest providerRequest, @PathVariable String providerId);
 
 
-    @Operation(summary = "Consulta todas as cidades.")
+    @Operation(summary = "Consulta todos os fornecedores.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -235,8 +265,15 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                "cityName": "Fortaleza",
-                                                "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -268,7 +305,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -279,11 +316,11 @@ public interface ICityController {
             )
     })
     @GetMapping
-    ResponseEntity<List<CityResponse>> findAll();
+    ResponseEntity<List<ProviderResponse>> findAll();
 
 
-    @Operation(summary = "Consulta a cidade por ID.", description = """
-            Consulta a cidade passando o ID na URL.
+    @Operation(summary = "Consulta o fornecedor por ID.", description = """
+            Consulta o fornecedor passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
@@ -294,8 +331,15 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "cityName": "Fortaleza",
-                                              "uf": "CE"
+                                              "providerName": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "num": "Número",
+                                              "district": "Bairro",
+                                              "cep": "31640-200",
+                                              "contact": "85 9 1111-2222",
+                                              "cnpj": "18.436.184/0001-00",
+                                              "insc": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -303,7 +347,7 @@ public interface ICityController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhuma cidade.",
+                    description = "Caso o ID enviado na URL não seja de nenhum fornecedor.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -313,7 +357,7 @@ public interface ICityController {
                                                  "status": 404,
                                                  "type": "http://localhost:8082/api/inventorycontrol/documentation",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Cidade não está salva no sistema."
+                                                 "detail": "Fornecedor não está salvo no sistema."
                                             }
                                             """
                             )
@@ -345,7 +389,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -355,24 +399,24 @@ public interface ICityController {
                     )
             )
     })
-    @GetMapping("/{cityId}")
-    ResponseEntity<CityResponse> findById(@PathVariable String cityId);
+    @GetMapping("/{providerId}")
+    ResponseEntity<ProviderResponse> findById(@PathVariable String providerId);
 
 
-    @Operation(summary = "Deleta uma cidade por ID.", description = """
-            Deleta a cidade passando o ID na URL.
+    @Operation(summary = "Deleta um fornecedor por ID.", description = """
+            Deleta o fornecedor passando o ID na URL.
 
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso a cidade seja deletada com sucesso.",
+                    description = "Caso o fornecedor seja deletado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "message": "Cidade deletada com sucesso."
+                                                 "message": "Fornecedor deletado com sucesso."
                                             }
                                             """
                             )
@@ -380,7 +424,7 @@ public interface ICityController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhuma cidade.",
+                    description = "Caso o ID enviado na URL não seja de nenhum fornecedor.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -390,7 +434,7 @@ public interface ICityController {
                                                  "status": 404,
                                                  "type": "http://localhost:8082/api/inventorycontrol/documentation",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Cidade não armazenada no sistema."
+                                                 "detail": "Fornecedor não armazenado no sistema."
                                             }
                                             """
                             )
@@ -422,7 +466,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -432,6 +476,6 @@ public interface ICityController {
                     )
             )
     })
-    @DeleteMapping(path = "/{cityId}")
-    ResponseEntity<UUID> delete(@PathVariable String cityId);
+    @DeleteMapping(path = "/{providerId}")
+    ResponseEntity<UUID> delete(@PathVariable String providerId);
 }
