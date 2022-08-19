@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,12 +33,12 @@ public class ProviderController implements IProviderController {
     }
 
     @PostMapping
-    public ResponseEntity<ProviderResponse> save(@RequestBody ProviderRequest providerRequest) {
+    public ResponseEntity<ProviderResponse> save(@RequestBody @Valid ProviderRequest providerRequest) {
         return ResponseEntity.ok().body(ProviderMapper.toResponse(providerService.save(ProviderMapper.toModel(providerRequest))));
     }
 
     @PutMapping("/{providerId}")
-    public ResponseEntity<ProviderResponse> update(@RequestBody ProviderRequest providerRequest, @PathVariable String providerId) {
+    public ResponseEntity<ProviderResponse> update(@RequestBody @Valid ProviderRequest providerRequest, @PathVariable String providerId) {
         return ResponseEntity.ok().body(ProviderMapper.toResponse(providerService.update(ProviderMapper.toModel(providerRequest), UUID.fromString(providerId))));
     }
 
