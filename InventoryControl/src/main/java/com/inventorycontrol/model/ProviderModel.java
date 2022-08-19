@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -41,4 +42,12 @@ public class ProviderModel {
     private String insc;
 
     private String telephone;
+
+    @ManyToMany
+    @JoinTable(
+            name = "provider_cities",
+            schema = "inventory",
+            joinColumns = @JoinColumn(name = "providerId_fk"),
+            inverseJoinColumns = @JoinColumn(name = "cityId_fk"))
+    private List<CityModel> cityModelList;
 }

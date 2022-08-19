@@ -1,8 +1,6 @@
 package com.inventorycontrol.http.controller.interfaces;
 
-import com.inventorycontrol.http.dto.request.CityRequest;
 import com.inventorycontrol.http.dto.request.ProviderRequest;
-import com.inventorycontrol.http.dto.response.CityResponse;
 import com.inventorycontrol.http.dto.response.ProviderResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -43,7 +41,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                             }
                                             """
                             )
@@ -120,7 +121,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                     }
                                     """
                     )
@@ -150,7 +154,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                             }
                                             """
                             )
@@ -245,7 +252,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                     }
                                     """
                     )
@@ -273,7 +283,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                             }
                                             """
                             )
@@ -339,7 +352,10 @@ public interface IProviderController {
                                               "contact": "85 9 1111-2222",
                                               "cnpj": "18.436.184/0001-00",
                                               "insc": "Número de inscrição",
-                                              "telephone": "85 9 1111-2222"
+                                              "telephone": "85 9 1111-2222",
+                                              "cityListIds": [
+                                                "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              ]
                                             }
                                             """
                             )

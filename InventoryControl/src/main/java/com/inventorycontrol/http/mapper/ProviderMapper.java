@@ -24,6 +24,7 @@ public class ProviderMapper {
                 .cnpj(providerRequest.getCnpj())
                 .insc(providerRequest.getInsc())
                 .telephone(providerRequest.getTelephone())
+                .cityModelList(CityMapper.toModelList(providerRequest.getCityListIds()))
                 .build();
     }
 
@@ -39,6 +40,7 @@ public class ProviderMapper {
                 .cnpj(providerModel.getCnpj())
                 .insc(providerModel.getInsc())
                 .telephone(providerModel.getTelephone())
+                .cityResponseList(CityMapper.toResponseList(providerModel.getCityModelList()))
                 .build();
     }
 

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -32,4 +33,6 @@ public class ProviderResponse {
     private String insc;
 
     private String telephone;
+
+    private List<CityResponse> cityResponseList;
 }

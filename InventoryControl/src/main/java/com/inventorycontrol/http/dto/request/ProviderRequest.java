@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -37,6 +39,8 @@ public class ProviderRequest {
     private String insc;
 
     @NotEmpty(message = "Informe o telefone.")
-    @Size(max = 15, min = 15)
+    @Size(max = 14, min = 11)
     private String telephone;
+
+    private List<UUID> cityListIds;
 }

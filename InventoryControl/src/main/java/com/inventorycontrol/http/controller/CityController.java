@@ -24,7 +24,7 @@ public class CityController implements ICityController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CityResponse>> findAll() {
-        return ResponseEntity.ok().body(CityMapper.responseList(cityService.findAll()));
+        return ResponseEntity.ok().body(CityMapper.toResponseList(cityService.findAll()));
     }
 
     @GetMapping("/{cityId}")
