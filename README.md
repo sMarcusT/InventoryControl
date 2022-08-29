@@ -8,6 +8,8 @@
 <li>PostgreSQL</li>
 <li>OpenApi</li>
 <li>Lombook</li>
+<li>PostMan</li>
+<li>Swagger</li>
 </ul>
 </div>
 <br/>
