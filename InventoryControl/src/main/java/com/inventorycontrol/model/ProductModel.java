@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "product", schema = "inventory")
-public class ProductModel {
+public class ProductModel implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -31,4 +32,8 @@ public class ProductModel {
     private boolean controlled;
 
     private Integer minimumQuantity;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    private CategoryModel categoryModel;
 }

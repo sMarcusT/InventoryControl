@@ -2,6 +2,7 @@ package com.inventorycontrol.http.mapper;
 
 import com.inventorycontrol.http.dto.request.ProductRequest;
 import com.inventorycontrol.http.dto.response.ProductResponse;
+import com.inventorycontrol.model.CategoryModel;
 import com.inventorycontrol.model.ProductModel;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ public class ProductMapper {
                 .weight(productRequest.getWeight())
                 .controlled(productRequest.isControlled())
                 .minimumQuantity(productRequest.getMinimumQuantity())
+                .categoryModel(CategoryModel.builder().categoryId(productRequest.getCategoryId()).build())
                 .build();
     }
 

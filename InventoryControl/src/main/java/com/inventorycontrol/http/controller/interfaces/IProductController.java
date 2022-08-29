@@ -36,7 +36,8 @@ public interface IProductController {
                                               "productName": "Cebolitos",
                                               "weight": "Peso",
                                               "controlled": true,
-                                              "minimumQuantity": 2
+                                              "minimumQuantity": 2,
+                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                             }
                                             """
                             )
@@ -108,7 +109,8 @@ public interface IProductController {
                                       "productName": "Cebolitos",
                                       "weight": "Peso",
                                       "controlled": true,
-                                      "minimumQuantity": 2
+                                      "minimumQuantity": 2,
+                                      "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                     }
                                     """
                     )
@@ -133,7 +135,8 @@ public interface IProductController {
                                               "productName": "Cebolitos",
                                               "weight": "Peso",
                                               "controlled": true,
-                                              "minimumQuantity": 2
+                                              "minimumQuantity": 2,
+                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                             }
                                             """
                             )
@@ -223,7 +226,8 @@ public interface IProductController {
                                       "productName": "Cebolitos",
                                       "weight": "Peso",
                                       "controlled": true,
-                                      "minimumQuantity": 2
+                                      "minimumQuantity": 2,
+                                      "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                     }
                                     """
                     )
@@ -246,7 +250,8 @@ public interface IProductController {
                                               "productName": "Cebolitos",
                                               "weight": "Peso",
                                               "controlled": true,
-                                              "minimumQuantity": 2
+                                              "minimumQuantity": 2,
+                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                             }
                                             """
                             )
@@ -307,7 +312,8 @@ public interface IProductController {
                                               "productName": "Cebolitos",
                                               "weight": "Peso",
                                               "controlled": true,
-                                              "minimumQuantity": 2
+                                              "minimumQuantity": 2,
+                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
                                             }
                                             """
                             )

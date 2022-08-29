@@ -1,11 +1,11 @@
 package com.inventorycontrol.http.dto.request;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,4 +21,6 @@ public class ProductRequest {
 
     @NotBlank(message = "Informe a quantidade mínima.")
     private Integer minimumQuantity;
+
+    private UUID categoryId;
 }
