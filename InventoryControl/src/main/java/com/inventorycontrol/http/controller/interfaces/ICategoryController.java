@@ -1,9 +1,7 @@
 package com.inventorycontrol.http.controller.interfaces;
 
 import com.inventorycontrol.http.dto.request.CategoryRequest;
-import com.inventorycontrol.http.dto.request.ProductRequest;
 import com.inventorycontrol.http.dto.response.CategoryResponse;
-import com.inventorycontrol.http.dto.response.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
