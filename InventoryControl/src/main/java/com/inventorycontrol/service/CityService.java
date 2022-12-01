@@ -1,14 +1,17 @@
 package com.inventorycontrol.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.persistence.NoResultException;
+
+import org.springframework.stereotype.Service;
+
 import com.inventorycontrol.exception.DataAlreadyRegisteredException;
 import com.inventorycontrol.model.CityModel;
 import com.inventorycontrol.repository.CityRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
-import java.util.List;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -41,7 +44,8 @@ public class CityService {
     }
 
     public UUID delete(UUID uuid) {
-        var cityModel = cityRepository.findById(uuid).orElseThrow(() -> new NoResultException("Cidade não encontrada."));
+        var cityModel = cityRepository.findById(uuid)
+                .orElseThrow(() -> new NoResultException("Cidade não encontrada."));
         cityRepository.delete(cityModel);
         return uuid;
     }

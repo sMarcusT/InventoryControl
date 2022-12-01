@@ -1,14 +1,17 @@
 package com.inventorycontrol.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.persistence.NoResultException;
+
+import org.springframework.stereotype.Service;
+
 import com.inventorycontrol.exception.DataAlreadyRegisteredException;
 import com.inventorycontrol.model.ProductModel;
 import com.inventorycontrol.repository.ProductRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
-import java.util.List;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor

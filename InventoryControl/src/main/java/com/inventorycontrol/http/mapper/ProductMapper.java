@@ -1,15 +1,16 @@
 package com.inventorycontrol.http.mapper;
 
-import com.inventorycontrol.http.dto.request.ProductRequest;
-import com.inventorycontrol.http.dto.response.ProductResponse;
-import com.inventorycontrol.model.CategoryModel;
-import com.inventorycontrol.model.ProductModel;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
+import com.inventorycontrol.http.dto.request.ProductRequest;
+import com.inventorycontrol.http.dto.response.ProductResponse;
+import com.inventorycontrol.model.CategoryModel;
+import com.inventorycontrol.model.ProductModel;
 
 @Component
 public class ProductMapper {
