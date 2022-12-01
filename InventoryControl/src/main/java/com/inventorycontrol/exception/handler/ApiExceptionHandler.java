@@ -1,6 +1,9 @@
 package com.inventorycontrol.exception.handler;
 
-import com.inventorycontrol.exception.DataAlreadyRegisteredException;
+import java.util.List;
+
+import javax.persistence.NoResultException;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,8 +17,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.persistence.NoResultException;
-import java.util.List;
+import com.inventorycontrol.exception.DataAlreadyRegisteredException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -26,16 +28,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             "Tente novamente e, se o problema persistir, entre em contato com o administrador.";
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
         return handleValidationException(ex, headers, status, request);
     }
 
     @Override
-    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
+            WebRequest request) {
         return handleValidationException(ex, headers, status, request);
     }
 
-    private ResponseEntity<Object> handleValidationException(Exception ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    private ResponseEntity<Object> handleValidationException(Exception ex, HttpHeaders headers, HttpStatus status,
+            WebRequest request) {
         List<ApiError.Field> fields = getFieldsWithError(ex);
 
         ApiError apiError = ApiError.builder()
@@ -69,7 +74,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(DataAlreadyRegisteredException.class)
-    protected ResponseEntity<Object> handleDataAlreadyRegistered(DataAlreadyRegisteredException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleDataAlreadyRegistered(DataAlreadyRegisteredException ex,
+            WebRequest request) {
         var status = HttpStatus.BAD_REQUEST;
 
         ApiError apiError = ApiError.builder()
@@ -86,7 +92,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex,
+            WebRequest request) {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         ApiError apiError = ApiError.builder()
@@ -131,7 +138,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
+            HttpStatus status, WebRequest request) {
         ApiError apiError = ApiError.builder()
                 .status(status.value())
                 .title(status.getReasonPhrase())
