@@ -6,11 +6,11 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
     username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:12345678}
+    password: ${DATABASE_PASSWORD:root}
   jackson:
     deserialization:
       fail-on-unknown-properties: true

@@ -1,28 +1,18 @@
 package com.inventorycontrol.http.controller;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.validation.Valid;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.inventorycontrol.http.controller.interfaces.ICategoryController;
 import com.inventorycontrol.http.dto.request.CategoryRequest;
 import com.inventorycontrol.http.dto.response.CategoryResponse;
 import com.inventorycontrol.http.mapper.CategoryMapper;
 import com.inventorycontrol.service.CategoryService;
-
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 @Validated
 @RestController
@@ -51,7 +41,7 @@ public class CategoryController implements ICategoryController {
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<CategoryResponse> update(@RequestBody @Valid CategoryRequest categoryRequest,
-            @PathVariable String categoryId) {
+                                                   @PathVariable String categoryId) {
         return ResponseEntity.ok().body(CategoryMapper.toResponse(
                 categoryService.update(CategoryMapper.toModel(categoryRequest), UUID.fromString(categoryId))));
     }

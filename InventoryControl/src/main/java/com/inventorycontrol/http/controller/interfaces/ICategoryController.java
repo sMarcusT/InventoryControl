@@ -49,7 +49,7 @@ public interface ICategoryController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/category",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -67,7 +67,7 @@ public interface ICategoryController {
                                             {
                                                  "timestamp": "23-05-2022 12:41:33",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/category",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Categoria já está armazenada no sistema."
                                             }
@@ -83,7 +83,7 @@ public interface ICategoryController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/category",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/category",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -140,7 +140,7 @@ public interface ICategoryController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Categoria não está armazenada no sistema."
                                             }
@@ -158,7 +158,7 @@ public interface ICategoryController {
                                             {
                                                  "timestamp": "23-05-2022 12:42:53",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Já existe uma categoria armazenada com esse código."
                                             }
@@ -176,7 +176,7 @@ public interface ICategoryController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -192,7 +192,7 @@ public interface ICategoryController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/category",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -247,7 +247,7 @@ public interface ICategoryController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/category/findAll",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -263,7 +263,7 @@ public interface ICategoryController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/category",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/category/findAll",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -305,7 +305,7 @@ public interface ICategoryController {
                                             {
                                                  "timestamp": "",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Categoria não está salva no sistema."
                                             }
@@ -323,7 +323,7 @@ public interface ICategoryController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -339,7 +339,7 @@ public interface ICategoryController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/category",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -382,7 +382,7 @@ public interface ICategoryController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Categoria não armazenada no sistema."
                                             }
@@ -400,7 +400,7 @@ public interface ICategoryController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -416,7 +416,7 @@ public interface ICategoryController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/category",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/category/{categoryId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401

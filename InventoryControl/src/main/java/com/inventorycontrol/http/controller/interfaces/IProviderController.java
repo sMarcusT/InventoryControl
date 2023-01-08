@@ -60,7 +60,7 @@ public interface IProviderController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/provider",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -78,7 +78,7 @@ public interface IProviderController {
                                             {
                                                  "timestamp": "23-05-2022 12:41:33",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/provider",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Fornecedor já está armazenado no sistema."
                                             }
@@ -94,7 +94,7 @@ public interface IProviderController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/provider",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/provider",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -165,7 +165,7 @@ public interface IProviderController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhuma cidade.",
+                    description = "Caso o ID enviado na URL não seja de nenhum fornecerdor.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -173,7 +173,7 @@ public interface IProviderController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Fornecedor não está armazenado no sistema."
                                             }
@@ -191,7 +191,7 @@ public interface IProviderController {
                                             {
                                                  "timestamp": "23-05-2022 12:42:53",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Já existe um fornecedor armazenado com esse código."
                                             }
@@ -209,7 +209,7 @@ public interface IProviderController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -225,7 +225,7 @@ public interface IProviderController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/provider",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -302,7 +302,7 @@ public interface IProviderController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/provider/all",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -318,7 +318,7 @@ public interface IProviderController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/provider",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/provider/all",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -328,7 +328,7 @@ public interface IProviderController {
                     )
             )
     })
-    @GetMapping
+    @GetMapping("/all")
     ResponseEntity<List<ProviderResponse>> findAll();
 
 
@@ -371,7 +371,7 @@ public interface IProviderController {
                                             {
                                                  "timestamp": "",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Fornecedor não está salvo no sistema."
                                             }
@@ -389,7 +389,7 @@ public interface IProviderController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -405,7 +405,7 @@ public interface IProviderController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/provider",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -448,7 +448,7 @@ public interface IProviderController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Fornecedor não armazenado no sistema."
                                             }
@@ -466,7 +466,7 @@ public interface IProviderController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -482,7 +482,7 @@ public interface IProviderController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/provider",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/provider/{providerId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401

@@ -1,7 +1,10 @@
 package com.inventorycontrol.http.controller.interfaces;
 
-import com.inventorycontrol.http.dto.request.ProductRequest;
-import com.inventorycontrol.http.dto.response.ProductResponse;
+import com.inventorycontrol.http.dto.message.MessageError;
+import com.inventorycontrol.http.dto.request.ProviderRequest;
+import com.inventorycontrol.http.dto.request.ShippingCompanyRequest;
+import com.inventorycontrol.http.dto.response.ProviderResponse;
+import com.inventorycontrol.http.dto.response.ShippingCompanyResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -16,28 +19,33 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Produtos")
+@Tag(name = "Transportadora")
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/product")
+@RequestMapping("/shipping_company")
 @Validated
-public interface IProductController {
+public interface IShippingCompanyController {
 
-    @Operation(summary = "Salva um novo produto.")
+    @Operation(summary = "Salva uma nova transportadora.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
-                    description = "Caso o produto seja armazenado com sucesso.",
+                    description = "Caso a transportadora seja armazenada com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "productName": "Cebolitos",
-                                              "weight": "Peso",
-                                              "controlled": true,
-                                              "minimumQuantity": 2,
-                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "shippingCompanyId": "a47e4fbe-7a27-4fb3-a0e4-16c10fc31d8a",
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -53,7 +61,7 @@ public interface IProductController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/product",
+                                                "type": "http://localhost:8080/api/inventorycontrol/shipping_company/create",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -63,7 +71,7 @@ public interface IProductController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso o produto já esteja armazenado no sistema.",
+                    description = "Caso a transportadora já esteja armazenado no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -71,9 +79,9 @@ public interface IProductController {
                                             {
                                                  "timestamp": "23-05-2022 12:41:33",
                                                  "status": 400,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/product",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/shipping_company/create",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Produto já está armazenado no sistema."
+                                                 "detail": "Transportadora já está armazenada no sistema."
                                             }
                                             """
                             )
@@ -87,7 +95,7 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/product",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/shipping_company/create",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -99,44 +107,52 @@ public interface IProductController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para salvar um novo produto.
+                    Dados para salvar uma nova transportadora.
                     """,
             content = @Content(
                     mediaType = "application/json",
                     examples = @ExampleObject(
                             value = """
                                     {
-                                      "productName": "Cebolitos",
-                                      "weight": "Peso",
-                                      "controlled": true,
-                                      "minimumQuantity": 2,
-                                      "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                     }
                                     """
                     )
             )
     )
-    @PostMapping
-    ResponseEntity<ProductResponse> save(@RequestBody @Valid ProductRequest productRequest);
+    @PostMapping("/create")
+    ResponseEntity<ShippingCompanyResponse> save(@RequestBody ShippingCompanyRequest request);
 
-    @Operation(summary = "Atualiza o produto por ID.", description = """
-            Atualiza o produto passando o ID na URL.
+    @Operation(summary = "Atualiza a transportadora por ID.", description = """
+            Atualiza a transportadora passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso o produto seja alterado com sucesso.",
+                    description = "Caso a transportadora seja alterada com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "cityId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b",
-                                              "productName": "Cebolitos",
-                                              "weight": "Peso",
-                                              "controlled": true,
-                                              "minimumQuantity": 2,
-                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "shippingCompanyId": "a47e4fbe-7a27-4fb3-a0e4-16c10fc31d8a",
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -144,7 +160,7 @@ public interface IProductController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum produto.",
+                    description = "Caso o ID enviado na URL não seja de nenhuma cidade.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -152,9 +168,9 @@ public interface IProductController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/shipping_company/update/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Produto não está armazenado no sistema."
+                                                 "detail": "Transportadora não está armazenada no sistema."
                                             }
                                             """
                             )
@@ -162,7 +178,7 @@ public interface IProductController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso o produto já esteja armazenado no sistema.",
+                    description = "Caso a tranportadora já esteja armazenada no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -170,9 +186,9 @@ public interface IProductController {
                                             {
                                                  "timestamp": "23-05-2022 12:42:53",
                                                  "status": 400,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/shipping_company/update/{uuid}",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Já existe um produto armazenado com esse código."
+                                                 "detail": "Já existe uma transportadora armazenado com esse código."
                                             }
                                             """
                             )
@@ -188,7 +204,7 @@ public interface IProductController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/shipping_company/update/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -204,7 +220,7 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/shipping_company/update/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -216,28 +232,32 @@ public interface IProductController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para atualizar um produto.
+                    Dados para atualizar uma transportadora.
                     """,
             content = @Content(
                     mediaType = "application/json",
                     examples = @ExampleObject(
                             value = """
                                     {
-                                      "productName": "Cebolitos",
-                                      "weight": "Peso",
-                                      "controlled": true,
-                                      "minimumQuantity": 2,
-                                      "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                     }
                                     """
                     )
             )
     )
-    @PutMapping("/{productId}")
-    ResponseEntity<ProductResponse> update(@RequestBody @Valid ProductRequest productRequest, @PathVariable String productId);
+    @PutMapping("/update/{uuid}")
+    ResponseEntity<ShippingCompanyResponse> update(@PathVariable UUID uuid, @RequestBody ShippingCompanyRequest request);
 
 
-    @Operation(summary = "Consulta todas os produtos.")
+    @Operation(summary = "Consulta todos as transportadoras.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -247,11 +267,16 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "productName": "Cebolitos",
-                                              "weight": "Peso",
-                                              "controlled": true,
-                                              "minimumQuantity": 2,
-                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "shippingCompanyId": "a47e4fbe-7a27-4fb3-a0e4-16c10fc31d8a",
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -267,7 +292,7 @@ public interface IProductController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/product/all",
+                                                "type": "http://localhost:8080/api/inventorycontrol/shipping_company/findAll",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -283,7 +308,7 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/product/all",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/shipping_company/findAll",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -293,12 +318,12 @@ public interface IProductController {
                     )
             )
     })
-    @GetMapping("/all")
-    ResponseEntity<List<ProductResponse>> findAll();
+    @GetMapping("/findAll")
+    ResponseEntity<List<ShippingCompanyResponse>> findAll();
 
 
-    @Operation(summary = "Consulta o produto por ID.", description = """
-            Consulta o produto passando o ID na URL.
+    @Operation(summary = "Consulta a transportadora por ID.", description = """
+            Consulta a transportadora passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
@@ -309,11 +334,16 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                              "productName": "Cebolitos",
-                                              "weight": "Peso",
-                                              "controlled": true,
-                                              "minimumQuantity": 2,
-                                              "categoryId": "3047caa5-621e-4c42-89ee-e6b7c2f1b16b"
+                                              "shippingCompanyId": "a47e4fbe-7a27-4fb3-a0e4-16c10fc31d8a",
+                                              "name": "Nome do Fornecedor",
+                                              "address": "Endereço",
+                                              "number": "Número",
+                                              "district": "Bairro",
+                                              "zipCode": "31640-200",
+                                              "cnpj": "85 9 1111-2222",
+                                              "subscription": "18.436.184/0001-00",
+                                              "contact": "Número de inscrição",
+                                              "telephone": "85 9 1111-2222"
                                             }
                                             """
                             )
@@ -321,7 +351,7 @@ public interface IProductController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum produto.",
+                    description = "Caso o ID enviado na URL não seja de nenhuma transportadora.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -329,9 +359,9 @@ public interface IProductController {
                                             {
                                                  "timestamp": "",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/shipping_company/findById/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Produto não está salvo no sistema."
+                                                 "detail": "Transportadora não está armazenada no sistema."
                                             }
                                             """
                             )
@@ -347,7 +377,7 @@ public interface IProductController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/shipping_company/findById/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -363,7 +393,7 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/shipping_company/findById/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -373,24 +403,25 @@ public interface IProductController {
                     )
             )
     })
-    @GetMapping("/{productId}")
-    ResponseEntity<ProductResponse> findById(@PathVariable String productId);
+
+    @GetMapping("/{uuid}")
+    ResponseEntity<ShippingCompanyResponse> findById(@PathVariable UUID uuid);
 
 
-    @Operation(summary = "Deleta um produto por ID.", description = """
-            Deleta o produto passando o ID na URL.
+    @Operation(summary = "Deleta uma transportadora por ID.", description = """
+            Deleta a transportadora passando o ID na URL.
 
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso o produto seja deletado com sucesso.",
+                    description = "Caso a transportadora seja deletada com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "message": "Produto deletado com sucesso."
+                                                 "message": "Transportadora deletada com sucesso."
                                             }
                                             """
                             )
@@ -398,7 +429,7 @@ public interface IProductController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum produto.",
+                    description = "Caso o ID enviado na URL não seja de nenhuma transportadora.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -406,9 +437,9 @@ public interface IProductController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/shipping_company/delete/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Produto não armazenado no sistema."
+                                                 "detail": "Tansportadora não armazenada no sistema."
                                             }
                                             """
                             )
@@ -424,7 +455,7 @@ public interface IProductController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/shipping_company/delete/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -440,7 +471,7 @@ public interface IProductController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/product/{productId}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/shipping_company/delete/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -450,6 +481,6 @@ public interface IProductController {
                     )
             )
     })
-    @DeleteMapping(path = "/{productId}")
-    ResponseEntity<UUID> delete(@PathVariable String productid);
+    @DeleteMapping("/delete/{uuid}")
+    ResponseEntity<MessageError> delete(@PathVariable String uuid);
 }

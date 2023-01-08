@@ -50,7 +50,7 @@ public interface ICityController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/city",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -68,7 +68,7 @@ public interface ICityController {
                                             {
                                                  "timestamp": "23-05-2022 12:41:33",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/city",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Cidade já está armazenada no sistema."
                                             }
@@ -84,7 +84,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/city",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -143,7 +143,7 @@ public interface ICityController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Cidade não está armazenada no sistema."
                                             }
@@ -161,7 +161,7 @@ public interface ICityController {
                                             {
                                                  "timestamp": "23-05-2022 12:42:53",
                                                  "status": 400,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "title": "Dado único já cadastrado.",
                                                  "detail": "Já existe uma cidade salva com esse código."
                                             }
@@ -179,7 +179,7 @@ public interface ICityController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -195,7 +195,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -252,7 +252,7 @@ public interface ICityController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/city/findAll",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -268,7 +268,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/city/findAll",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -311,7 +311,7 @@ public interface ICityController {
                                             {
                                                  "timestamp": "",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Cidade não está salva no sistema."
                                             }
@@ -329,7 +329,7 @@ public interface ICityController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -345,7 +345,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -388,7 +388,7 @@ public interface ICityController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "title": "Recurso não encontrado.",
                                                  "detail": "Cidade não armazenada no sistema."
                                             }
@@ -406,7 +406,7 @@ public interface ICityController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8082/api/inventorycontrol/documentation",
+                                                "type": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -422,7 +422,7 @@ public interface ICityController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "/city",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/city/{cityId}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
