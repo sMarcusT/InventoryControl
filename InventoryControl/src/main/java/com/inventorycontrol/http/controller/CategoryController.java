@@ -1,6 +1,7 @@
 package com.inventorycontrol.http.controller;
 
 import com.inventorycontrol.http.controller.interfaces.ICategoryController;
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CategoryRequest;
 import com.inventorycontrol.http.dto.response.CategoryResponse;
 import com.inventorycontrol.http.mapper.CategoryMapper;
@@ -47,7 +48,11 @@ public class CategoryController implements ICategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    public ResponseEntity<UUID> delete(@PathVariable String categoryId) {
-        return ResponseEntity.ok().body(categoryService.delete(UUID.fromString(categoryId)));
+    public ResponseEntity<MessageError> delete(@PathVariable String categoryId) {
+        categoryService.delete(UUID.fromString(categoryId));
+        var messageError = new MessageError();
+        messageError.setMessage("Categoria deletada com sucesso!");
+        messageError.setStatusCode(200);
+        return ResponseEntity.ok().body(messageError);
     }
 }

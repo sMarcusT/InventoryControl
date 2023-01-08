@@ -1,5 +1,6 @@
 package com.inventorycontrol.http.controller.interfaces;
 
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProductRequest;
 import com.inventorycontrol.http.dto.response.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -451,5 +452,5 @@ public interface IProductController {
             )
     })
     @DeleteMapping(path = "/{productId}")
-    ResponseEntity<UUID> delete(@PathVariable String productid);
+    ResponseEntity<MessageError> delete(@PathVariable String productid);
 }

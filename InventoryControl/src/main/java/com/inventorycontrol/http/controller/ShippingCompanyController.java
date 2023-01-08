@@ -18,7 +18,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping("/shipping_company")
+@RequestMapping("/shippingCompany")
 public class ShippingCompanyController implements IShippingCompanyController {
 
     private final ShippingCompanyService service;

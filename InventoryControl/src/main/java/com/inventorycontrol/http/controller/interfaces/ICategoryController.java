@@ -1,5 +1,6 @@
 package com.inventorycontrol.http.controller.interfaces;
 
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CategoryRequest;
 import com.inventorycontrol.http.dto.response.CategoryResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -427,5 +428,5 @@ public interface ICategoryController {
             )
     })
     @DeleteMapping(path = "/{categoryId}")
-    ResponseEntity<UUID> delete(@PathVariable String categoryId);
+    ResponseEntity<MessageError> delete(@PathVariable String categoryId);
 }

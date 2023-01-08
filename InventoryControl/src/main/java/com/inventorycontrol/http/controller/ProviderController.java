@@ -1,6 +1,7 @@
 package com.inventorycontrol.http.controller;
 
 import com.inventorycontrol.http.controller.interfaces.IProviderController;
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProviderRequest;
 import com.inventorycontrol.http.dto.response.ProviderResponse;
 import com.inventorycontrol.http.mapper.ProviderMapper;
@@ -47,7 +48,11 @@ public class ProviderController implements IProviderController {
     }
 
     @DeleteMapping("/{providerId}")
-    public ResponseEntity<UUID> delete(@PathVariable String providerId) {
-        return ResponseEntity.ok().body(providerService.delete(UUID.fromString(providerId)));
+    public ResponseEntity<MessageError> delete(@PathVariable String providerId) {
+        providerService.delete(UUID.fromString(providerId));
+        var messageError = new MessageError();
+        messageError.setMessage("Fornecedor deletado com sucesso!");
+        messageError.setStatusCode(200);
+        return ResponseEntity.ok().body(messageError);
     }
 }

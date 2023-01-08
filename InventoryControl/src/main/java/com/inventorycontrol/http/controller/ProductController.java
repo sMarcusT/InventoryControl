@@ -1,6 +1,7 @@
 package com.inventorycontrol.http.controller;
 
 import com.inventorycontrol.http.controller.interfaces.IProductController;
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProductRequest;
 import com.inventorycontrol.http.dto.response.ProductResponse;
 import com.inventorycontrol.http.mapper.ProductMapper;
@@ -46,7 +47,11 @@ public class ProductController implements IProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public ResponseEntity<UUID> delete(@PathVariable String productId) {
-        return ResponseEntity.ok().body(productService.delete(UUID.fromString(productId)));
+    public ResponseEntity<MessageError> delete(@PathVariable String productId) {
+        productService.delete(UUID.fromString(productId));
+        var messageError = new MessageError();
+        messageError.setMessage("Produto deletado com sucesso!");
+        messageError.setStatusCode(200);
+        return ResponseEntity.ok().body(messageError);
     }
 }

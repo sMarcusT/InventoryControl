@@ -17,7 +17,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping("/entry_item")
+@RequestMapping("/entryItem")
 public class EntryItemController implements IEntryItemController {
 
     private final EntryItemService itemService;

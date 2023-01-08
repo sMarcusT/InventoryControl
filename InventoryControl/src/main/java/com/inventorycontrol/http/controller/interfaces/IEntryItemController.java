@@ -21,7 +21,7 @@ import java.util.UUID;
 @Tag(name = "Entrada de Item")
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/entry_item")
+@RequestMapping("/entryItem")
 @Validated
 public interface IEntryItemController {
 

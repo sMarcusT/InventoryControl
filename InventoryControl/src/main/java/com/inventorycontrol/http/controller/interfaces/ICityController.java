@@ -1,5 +1,6 @@
 package com.inventorycontrol.http.controller.interfaces;
 
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CityRequest;
 import com.inventorycontrol.http.dto.response.CityResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -433,5 +434,5 @@ public interface ICityController {
             )
     })
     @DeleteMapping(path = "/{cityId}")
-    ResponseEntity<UUID> delete(@PathVariable String cityId);
+    ResponseEntity<MessageError> delete(@PathVariable String cityId);
 }

@@ -1,6 +1,7 @@
 package com.inventorycontrol.http.controller;
 
 import com.inventorycontrol.http.controller.interfaces.ICityController;
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CityRequest;
 import com.inventorycontrol.http.dto.response.CityResponse;
 import com.inventorycontrol.http.mapper.CityMapper;
@@ -45,7 +46,11 @@ public class CityController implements ICityController {
     }
 
     @DeleteMapping("/{cityId}")
-    public ResponseEntity<UUID> delete(@PathVariable String clientId) {
-        return ResponseEntity.ok().body(cityService.delete(UUID.fromString(clientId)));
+    public ResponseEntity<MessageError> delete(@PathVariable String clientId) {
+        cityService.delete(UUID.fromString(clientId));
+        var messageError = new MessageError();
+        messageError.setMessage("Cidade deletada com sucesso!");
+        messageError.setStatusCode(200);
+        return ResponseEntity.ok().body(messageError);
     }
 }

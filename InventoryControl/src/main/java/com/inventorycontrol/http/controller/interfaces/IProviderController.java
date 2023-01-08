@@ -1,5 +1,6 @@
 package com.inventorycontrol.http.controller.interfaces;
 
+import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProviderRequest;
 import com.inventorycontrol.http.dto.response.ProviderResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -493,5 +494,5 @@ public interface IProviderController {
             )
     })
     @DeleteMapping(path = "/{providerId}")
-    ResponseEntity<UUID> delete(@PathVariable String providerId);
+    ResponseEntity<MessageError> delete(@PathVariable String providerId);
 }
