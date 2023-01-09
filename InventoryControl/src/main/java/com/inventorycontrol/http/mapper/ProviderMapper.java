@@ -1,15 +1,14 @@
 package com.inventorycontrol.http.mapper;
 
+import com.inventorycontrol.http.dto.request.ProviderRequest;
+import com.inventorycontrol.http.dto.response.ProviderResponse;
+import com.inventorycontrol.model.ProviderModel;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-
-import com.inventorycontrol.http.dto.request.ProviderRequest;
-import com.inventorycontrol.http.dto.response.ProviderResponse;
-import com.inventorycontrol.model.ProviderModel;
 
 @Component
 public class ProviderMapper {

@@ -1,15 +1,14 @@
 package com.inventorycontrol.http.mapper;
 
+import com.inventorycontrol.http.dto.request.CategoryRequest;
+import com.inventorycontrol.http.dto.response.CategoryResponse;
+import com.inventorycontrol.model.CategoryModel;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-
-import com.inventorycontrol.http.dto.request.CategoryRequest;
-import com.inventorycontrol.http.dto.response.CategoryResponse;
-import com.inventorycontrol.model.CategoryModel;
 
 @Component
 public class CategoryMapper {

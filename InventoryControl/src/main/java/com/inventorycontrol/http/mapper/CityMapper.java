@@ -1,17 +1,16 @@
 package com.inventorycontrol.http.mapper;
 
-import static java.util.Objects.isNull;
+import com.inventorycontrol.http.dto.request.CityRequest;
+import com.inventorycontrol.http.dto.response.CityResponse;
+import com.inventorycontrol.model.CityModel;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
-import com.inventorycontrol.http.dto.request.CityRequest;
-import com.inventorycontrol.http.dto.response.CityResponse;
-import com.inventorycontrol.model.CityModel;
+import static java.util.Objects.isNull;
 
 @Component
 public class CityMapper {

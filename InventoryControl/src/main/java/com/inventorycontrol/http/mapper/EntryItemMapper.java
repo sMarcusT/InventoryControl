@@ -1,10 +1,7 @@
 package com.inventorycontrol.http.mapper;
 
-import com.inventorycontrol.http.dto.request.CategoryRequest;
 import com.inventorycontrol.http.dto.request.EntryItemRequest;
-import com.inventorycontrol.http.dto.response.CategoryResponse;
 import com.inventorycontrol.http.dto.response.EntryItemResponse;
-import com.inventorycontrol.model.CategoryModel;
 import com.inventorycontrol.model.EntryItemModel;
 import org.springframework.stereotype.Component;
 

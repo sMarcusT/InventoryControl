@@ -4,7 +4,6 @@ import com.inventorycontrol.http.controller.interfaces.IOutputItemController;
 import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.OutputItemRequest;
 import com.inventorycontrol.http.dto.response.OutputItemResponse;
-import com.inventorycontrol.http.mapper.EntryItemMapper;
 import com.inventorycontrol.http.mapper.OutputItemMapper;
 import com.inventorycontrol.service.impl.OutputItemServiceImpl;
 import lombok.AllArgsConstructor;
