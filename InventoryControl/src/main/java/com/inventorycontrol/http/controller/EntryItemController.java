@@ -5,7 +5,7 @@ import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.EntryItemRequest;
 import com.inventorycontrol.http.dto.response.EntryItemResponse;
 import com.inventorycontrol.http.mapper.EntryItemMapper;
-import com.inventorycontrol.service.EntryItemService;
+import com.inventorycontrol.service.impl.EntryItemServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequestMapping("/entryItem")
 public class EntryItemController implements IEntryItemController {
 
-    private final EntryItemService itemService;
+    private final EntryItemServiceImpl itemService;
 
     @GetMapping("/findAll")
     public ResponseEntity<List<EntryItemResponse>> findAll() {

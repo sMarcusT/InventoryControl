@@ -5,7 +5,7 @@ import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProviderRequest;
 import com.inventorycontrol.http.dto.response.ProviderResponse;
 import com.inventorycontrol.http.mapper.ProviderMapper;
-import com.inventorycontrol.service.ProviderService;
+import com.inventorycontrol.service.impl.ProviderServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequestMapping("/provider")
 public class ProviderController implements IProviderController {
 
-    private final ProviderService providerService;
+    private final ProviderServiceImpl providerService;
 
     @GetMapping("/all")
     public ResponseEntity<List<ProviderResponse>> findAll() {
@@ -44,7 +44,7 @@ public class ProviderController implements IProviderController {
     public ResponseEntity<ProviderResponse> update(@RequestBody @Valid ProviderRequest providerRequest,
                                                    @PathVariable String providerId) {
         return ResponseEntity.ok().body(ProviderMapper.toResponse(
-                providerService.update(ProviderMapper.toModel(providerRequest), UUID.fromString(providerId))));
+                providerService.update(UUID.fromString(providerId), ProviderMapper.toModel(providerRequest))));
     }
 
     @DeleteMapping("/{providerId}")

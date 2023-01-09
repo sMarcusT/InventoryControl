@@ -5,7 +5,7 @@ import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CategoryRequest;
 import com.inventorycontrol.http.dto.response.CategoryResponse;
 import com.inventorycontrol.http.mapper.CategoryMapper;
-import com.inventorycontrol.service.CategoryService;
+import com.inventorycontrol.service.impl.CategorySeviceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,35 +21,35 @@ import java.util.UUID;
 @RequestMapping("/category")
 public class CategoryController implements ICategoryController {
 
-    private final CategoryService categoryService;
+    private final CategorySeviceImpl categoryServiceImpl;
 
     @GetMapping("/all")
     public ResponseEntity<List<CategoryResponse>> findAll() {
-        return ResponseEntity.ok().body(CategoryMapper.toResponseList(categoryService.findAll()));
+        return ResponseEntity.ok().body(CategoryMapper.toResponseList(categoryServiceImpl.findAll()));
     }
 
     @GetMapping("{categoryId}")
     public ResponseEntity<CategoryResponse> findById(@PathVariable String categoryId) {
         return ResponseEntity.ok()
-                .body(CategoryMapper.toResponse(categoryService.findById(UUID.fromString(categoryId))));
+                .body(CategoryMapper.toResponse(categoryServiceImpl.findById(UUID.fromString(categoryId))));
     }
 
     @PostMapping
     public ResponseEntity<CategoryResponse> save(@RequestBody @Valid CategoryRequest categoryRequest) {
         return ResponseEntity.ok()
-                .body(CategoryMapper.toResponse(categoryService.save(CategoryMapper.toModel(categoryRequest))));
+                .body(CategoryMapper.toResponse(categoryServiceImpl.save(CategoryMapper.toModel(categoryRequest))));
     }
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<CategoryResponse> update(@RequestBody @Valid CategoryRequest categoryRequest,
                                                    @PathVariable String categoryId) {
         return ResponseEntity.ok().body(CategoryMapper.toResponse(
-                categoryService.update(CategoryMapper.toModel(categoryRequest), UUID.fromString(categoryId))));
+                categoryServiceImpl.update(CategoryMapper.toModel(categoryRequest), UUID.fromString(categoryId))));
     }
 
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<MessageError> delete(@PathVariable String categoryId) {
-        categoryService.delete(UUID.fromString(categoryId));
+        categoryServiceImpl.delete(UUID.fromString(categoryId));
         var messageError = new MessageError();
         messageError.setMessage("Categoria deletada com sucesso!");
         messageError.setStatusCode(200);

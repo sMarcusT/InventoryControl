@@ -5,7 +5,7 @@ import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.CityRequest;
 import com.inventorycontrol.http.dto.response.CityResponse;
 import com.inventorycontrol.http.mapper.CityMapper;
-import com.inventorycontrol.service.CityService;
+import com.inventorycontrol.service.impl.CityServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,33 +21,33 @@ import java.util.UUID;
 @RequestMapping("/city")
 public class CityController implements ICityController {
 
-    private final CityService cityService;
+    private final CityServiceImpl cityServiceImpl;
 
     @GetMapping("/all")
     public ResponseEntity<List<CityResponse>> findAll() {
-        return ResponseEntity.ok().body(CityMapper.toResponseList(cityService.findAll()));
+        return ResponseEntity.ok().body(CityMapper.toResponseList(cityServiceImpl.findAll()));
     }
 
     @GetMapping("/{cityId}")
     public ResponseEntity<CityResponse> findById(@PathVariable String cityId) {
-        return ResponseEntity.ok().body(CityMapper.toResponse(cityService.findById(UUID.fromString(cityId))));
+        return ResponseEntity.ok().body(CityMapper.toResponse(cityServiceImpl.findById(UUID.fromString(cityId))));
     }
 
     @PostMapping
     public ResponseEntity<CityResponse> save(@RequestBody @Valid CityRequest cityRequest) {
-        return ResponseEntity.ok().body(CityMapper.toResponse(cityService.save(CityMapper.toModel(cityRequest))));
+        return ResponseEntity.ok().body(CityMapper.toResponse(cityServiceImpl.save(CityMapper.toModel(cityRequest))));
     }
 
     @PutMapping("/{cityId}")
     public ResponseEntity<CityResponse> update(@RequestBody @Valid CityRequest cityRequest,
                                                @PathVariable String cityId) {
         return ResponseEntity.ok().body(
-                CityMapper.toResponse(cityService.update(CityMapper.toModel(cityRequest), UUID.fromString(cityId))));
+                CityMapper.toResponse(cityServiceImpl.update(CityMapper.toModel(cityRequest), UUID.fromString(cityId))));
     }
 
     @DeleteMapping("/{cityId}")
     public ResponseEntity<MessageError> delete(@PathVariable String clientId) {
-        cityService.delete(UUID.fromString(clientId));
+        cityServiceImpl.delete(UUID.fromString(clientId));
         var messageError = new MessageError();
         messageError.setMessage("Cidade deletada com sucesso!");
         messageError.setStatusCode(200);

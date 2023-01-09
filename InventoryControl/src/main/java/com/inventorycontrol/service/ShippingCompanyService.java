@@ -1,42 +1,19 @@
 package com.inventorycontrol.service;
 
 import com.inventorycontrol.model.ShippingCompanyModel;
-import com.inventorycontrol.repository.ShippingCompanyRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
-@Service
-public class ShippingCompanyService {
+public interface ShippingCompanyService {
 
-    private final ShippingCompanyRepository shippingCompanyRepository;
+    List<ShippingCompanyModel> findAll();
 
-    public List<ShippingCompanyModel> findAll() {
-        return shippingCompanyRepository.findAll();
-    }
+    ShippingCompanyModel findById(UUID uuid);
 
-    public ShippingCompanyModel findById(UUID uuid) {
-        return shippingCompanyRepository.findById(uuid).orElseThrow(() -> new NoResultException("Transportadora não encontrada."));
-    }
+    ShippingCompanyModel save(ShippingCompanyModel shippingCompanyModel);
 
-    public ShippingCompanyModel save(ShippingCompanyModel shippingCompanyModel) {
-        return shippingCompanyRepository.save(shippingCompanyModel);
-    }
+    ShippingCompanyModel update(UUID uuid, ShippingCompanyModel shippingCompanyModel);
 
-    public ShippingCompanyModel update(UUID uuid, ShippingCompanyModel model) {
-        shippingCompanyRepository.findById(uuid).orElseThrow(() -> new NoResultException("Transportadora não encontrada."));
-        model.setShippingCompanyId(uuid);
-        shippingCompanyRepository.save(model);
-        return model;
-    }
-
-    public UUID delete(UUID uuid) {
-        var response = shippingCompanyRepository.findById(uuid).orElseThrow(() -> new NoResultException("Transportadora não encontrada."));
-        shippingCompanyRepository.delete(response);
-        return uuid;
-    }
+    UUID delete(UUID uuid);
 }

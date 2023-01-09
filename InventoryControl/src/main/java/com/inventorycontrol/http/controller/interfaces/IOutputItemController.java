@@ -2,9 +2,9 @@ package com.inventorycontrol.http.controller.interfaces;
 
 import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.EntryItemRequest;
-import com.inventorycontrol.http.dto.request.ShippingCompanyRequest;
+import com.inventorycontrol.http.dto.request.OutputItemRequest;
 import com.inventorycontrol.http.dto.response.EntryItemResponse;
-import com.inventorycontrol.http.dto.response.ShippingCompanyResponse;
+import com.inventorycontrol.http.dto.response.OutputItemResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -18,18 +18,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Entrada de Item")
+@Tag(name = "Saída de Item")
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/entryItem")
+@RequestMapping("/outputItem")
 @Validated
-public interface IEntryItemController {
+public interface IOutputItemController {
 
-    @Operation(summary = "Salva um novo item de entrada.")
+    @Operation(summary = "Salva um novo item de saída.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
-                    description = "Caso o item de entrada seja armazenado com sucesso.",
+                    description = "Caso o item de saída seja armazenado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -54,7 +54,7 @@ public interface IEntryItemController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/entryItem/create",
+                                                "type": "http://localhost:8080/api/inventorycontrol/outputItem/create",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -64,7 +64,7 @@ public interface IEntryItemController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso o item de entrada já esteja armazenado no sistema.",
+                    description = "Caso o item de saída já esteja armazenado no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -72,9 +72,9 @@ public interface IEntryItemController {
                                             {
                                                  "timestamp": "23-05-2022 12:41:33",
                                                  "status": 400,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/entryItem/create",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/outputItem/create",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Item de entrada já está armazenado no sistema."
+                                                 "detail": "Item de saída já está armazenado no sistema."
                                             }
                                             """
                             )
@@ -88,7 +88,7 @@ public interface IEntryItemController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/entryItem/create",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/outputItem/create",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -100,7 +100,7 @@ public interface IEntryItemController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para salvar um novo item de entrada.
+                    Dados para salvar um novo item de saída.
                     """,
             content = @Content(
                     mediaType = "application/json",
@@ -116,15 +116,15 @@ public interface IEntryItemController {
             )
     )
     @PostMapping("/create")
-    ResponseEntity<EntryItemResponse> save(@RequestBody EntryItemRequest request);
+    ResponseEntity<OutputItemResponse> save(@RequestBody OutputItemRequest request);
 
-    @Operation(summary = "Atualiza o item de entrada por ID.", description = """
-            Atualiza o item de entrada passando o ID na URL.
+    @Operation(summary = "Atualiza o item de saída por ID.", description = """
+            Atualiza o item de saída passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso o item de entrada seja alterado com sucesso.",
+                    description = "Caso o item de saída seja alterado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -141,7 +141,7 @@ public interface IEntryItemController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum item de entrada.",
+                    description = "Caso o ID enviado na URL não seja de nenhum item de saída.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -149,9 +149,9 @@ public interface IEntryItemController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/entryItem/update/{uuid}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/outputItem/update/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Item de entrada não está armazenado no sistema."
+                                                 "detail": "Item de saída não está armazenado no sistema."
                                             }
                                             """
                             )
@@ -159,7 +159,7 @@ public interface IEntryItemController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Caso o item de entrada já esteja armazenado no sistema.",
+                    description = "Caso o item de saída já esteja armazenado no sistema.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -167,9 +167,9 @@ public interface IEntryItemController {
                                             {
                                                  "timestamp": "23-05-2022 12:42:53",
                                                  "status": 400,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/entryItem/update/{uuid}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/outputItem/update/{uuid}",
                                                  "title": "Dado único já cadastrado.",
-                                                 "detail": "Já existe um item de entrada armazenado com esse código."
+                                                 "detail": "Já existe um item de saída armazenado com esse código."
                                             }
                                             """
                             )
@@ -185,7 +185,7 @@ public interface IEntryItemController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/entryItem/update/{uuid}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/outputItem/update/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -201,7 +201,7 @@ public interface IEntryItemController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/entryItem/update/{uuid}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/outputItem/update/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -213,7 +213,7 @@ public interface IEntryItemController {
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = """
-                    Dados para atualizar um item de entrada.
+                    Dados para atualizar um item de saída.
                     """,
             content = @Content(
                     mediaType = "application/json",
@@ -229,10 +229,10 @@ public interface IEntryItemController {
             )
     )
     @PutMapping("/update/{uuid}")
-    ResponseEntity<EntryItemResponse> update(@PathVariable UUID uuid, @RequestBody EntryItemRequest request);
+    ResponseEntity<OutputItemResponse> update(@PathVariable UUID uuid, @RequestBody OutputItemRequest request);
 
 
-    @Operation(summary = "Consulta todos os itens de entrada.")
+    @Operation(summary = "Consulta todos os itens de saída.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -261,7 +261,7 @@ public interface IEntryItemController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/entryItem/findAll",
+                                                "type": "http://localhost:8080/api/inventorycontrol/outputItem/findAll",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -277,7 +277,7 @@ public interface IEntryItemController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/entryItem/findAll",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/outputItem/findAll",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -288,11 +288,11 @@ public interface IEntryItemController {
             )
     })
     @GetMapping("/findAll")
-    ResponseEntity<List<EntryItemResponse>> findAll();
+    ResponseEntity<List<OutputItemResponse>> findAll();
 
 
-    @Operation(summary = "Consulta o item de entrada por ID.", description = """
-            Consulta o item de entrada passando o ID na URL.
+    @Operation(summary = "Consulta o item de saída por ID.", description = """
+            Consulta o item de saída passando o ID na URL.
             """)
     @ApiResponses(value = {
             @ApiResponse(
@@ -314,7 +314,7 @@ public interface IEntryItemController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum item de entrada.",
+                    description = "Caso o ID enviado na URL não seja de nenhum item de saída.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -322,9 +322,9 @@ public interface IEntryItemController {
                                             {
                                                  "timestamp": "",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/entryItem/findById/{uuid}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/outputItem/findById/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Item de entrada não está armazenado no sistema."
+                                                 "detail": "Item de saída não está armazenado no sistema."
                                             }
                                             """
                             )
@@ -340,7 +340,7 @@ public interface IEntryItemController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/entryItem/findById/{uuid}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/outputItem/findById/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -356,7 +356,7 @@ public interface IEntryItemController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/entryItem/findById/{uuid}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/outputItem/findById/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401
@@ -368,23 +368,23 @@ public interface IEntryItemController {
     })
 
     @GetMapping("/findById/{uuid}")
-    ResponseEntity<EntryItemResponse> findById(@PathVariable UUID uuid);
+    ResponseEntity<OutputItemResponse> findById(@PathVariable UUID uuid);
 
 
-    @Operation(summary = "Deleta um item de entrada por ID.", description = """
-            Deleta o item de entrada passando o ID na URL.
+    @Operation(summary = "Deleta um item de saída por ID.", description = """
+            Deleta o item de saída passando o ID na URL.
 
             """)
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Caso o item de entrada seja deletado com sucesso.",
+                    description = "Caso o item de saída seja deletado com sucesso.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "message": "Item de entrada deletado com sucesso."
+                                                 "message": "Item de saída deletado com sucesso."
                                             }
                                             """
                             )
@@ -392,7 +392,7 @@ public interface IEntryItemController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Caso o ID enviado na URL não seja de nenhum item de entrada.",
+                    description = "Caso o ID enviado na URL não seja de nenhum item de saída.",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
@@ -400,9 +400,9 @@ public interface IEntryItemController {
                                             {
                                                  "timestamp": "23-05-2022 11:56:30",
                                                  "status": 404,
-                                                 "type": "http://localhost:8080/api/inventorycontrol/entryItem/delete/{uuid}",
+                                                 "type": "http://localhost:8080/api/inventorycontrol/outputItem/delete/{uuid}",
                                                  "title": "Recurso não encontrado.",
-                                                 "detail": "Item de entrada não armazenado no sistema."
+                                                 "detail": "Item de saída não armazenado no sistema."
                                             }
                                             """
                             )
@@ -418,7 +418,7 @@ public interface IEntryItemController {
                                             {
                                                 "timestamp": "23-05-2022 17:38:25",
                                                 "status": 403,
-                                                "type": "http://localhost:8080/api/inventorycontrol/entryItem/delete/{uuid}",
+                                                "type": "http://localhost:8080/api/inventorycontrol/outputItem/delete/{uuid}",
                                                 "title": "Não autorizado.",
                                                 "detail": "Usuário não tem permissão para acessar esse recurso!"
                                             }
@@ -434,7 +434,7 @@ public interface IEntryItemController {
                             examples = @ExampleObject(
                                     value = """
                                             {
-                                                 "path": "http://localhost:8080/api/inventorycontrol/entryItem/delete/{uuid}",
+                                                 "path": "http://localhost:8080/api/inventorycontrol/outputItem/delete/{uuid}",
                                                  "message": "The Token has expired on Mon May 23 17:39:42 BRT 2022.",
                                                  "error": "Unauthorized",
                                                  "status": 401

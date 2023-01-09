@@ -1,51 +1,19 @@
 package com.inventorycontrol.service;
 
+import com.inventorycontrol.model.ProductModel;
+
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.NoResultException;
+public interface ProductService {
 
-import org.springframework.stereotype.Service;
+    List<ProductModel> findAll();
 
-import com.inventorycontrol.exception.DataAlreadyRegisteredException;
-import com.inventorycontrol.model.ProductModel;
-import com.inventorycontrol.repository.ProductRepository;
+    ProductModel findById(UUID uuid);
 
-import lombok.AllArgsConstructor;
+    ProductModel save(ProductModel productModel);
 
-@Service
-@AllArgsConstructor
-public class ProductService {
+    ProductModel update(UUID uuid, ProductModel productModel);
 
-    private final ProductRepository productRepository;
-
-    public List<ProductModel> findAll() {
-        return productRepository.findAll();
-    }
-
-    public ProductModel findById(UUID uuid) {
-        return productRepository.findById(uuid).orElseThrow(() -> new NoResultException("Produto não encontrado."));
-    }
-
-    public ProductModel save(ProductModel productModel) {
-        if (productRepository.existsByProductName(productModel.getProductName())) {
-            throw new DataAlreadyRegisteredException("Produto informado já existe no sistema.");
-        }
-
-        return productRepository.save(productModel);
-    }
-
-    public ProductModel update(ProductModel productModel, UUID uuid) {
-        productRepository.findById(uuid).orElseThrow(() -> new NoResultException("Produto não encontrado."));
-        productModel.setProductId(uuid);
-        productRepository.save(productModel);
-        return productModel;
-    }
-
-    public UUID delete(UUID uuid) {
-        var productModel = productRepository.findById(uuid)
-                .orElseThrow(() -> new NoResultException("Produto não encontrado."));
-        productRepository.delete(productModel);
-        return uuid;
-    }
+    UUID delete(UUID uuid);
 }

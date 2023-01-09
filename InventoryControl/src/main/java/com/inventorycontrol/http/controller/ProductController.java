@@ -5,7 +5,7 @@ import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ProductRequest;
 import com.inventorycontrol.http.dto.response.ProductResponse;
 import com.inventorycontrol.http.mapper.ProductMapper;
-import com.inventorycontrol.service.ProductService;
+import com.inventorycontrol.service.impl.ProductServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequestMapping("/product")
 public class ProductController implements IProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
     @GetMapping("/all")
     public ResponseEntity<List<ProductResponse>> findAll() {
@@ -43,7 +43,7 @@ public class ProductController implements IProductController {
     public ResponseEntity<ProductResponse> update(@RequestBody @Valid ProductRequest productRequest,
                                                   @PathVariable String productId) {
         return ResponseEntity.ok().body(ProductMapper
-                .toResponse(productService.update(ProductMapper.toModel(productRequest), UUID.fromString(productId))));
+                .toResponse(productService.update(UUID.fromString(productId), ProductMapper.toModel(productRequest))));
     }
 
     @DeleteMapping("/{productId}")

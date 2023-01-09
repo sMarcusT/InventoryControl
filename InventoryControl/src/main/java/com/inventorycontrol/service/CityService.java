@@ -1,52 +1,19 @@
 package com.inventorycontrol.service;
 
+import com.inventorycontrol.model.CityModel;
+
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.NoResultException;
+public interface CityService {
 
-import org.springframework.stereotype.Service;
+    List<CityModel> findAll();
 
-import com.inventorycontrol.exception.DataAlreadyRegisteredException;
-import com.inventorycontrol.model.CityModel;
-import com.inventorycontrol.repository.CityRepository;
+    CityModel findById(UUID uuid);
 
-import lombok.AllArgsConstructor;
+    CityModel save(CityModel cityModel);
 
-@Service
-@AllArgsConstructor
-public class CityService {
+    CityModel update(CityModel cityModel, UUID uuid);
 
-    private final CityRepository cityRepository;
-
-    public List<CityModel> findAll() {
-        return cityRepository.findAll();
-    }
-
-    public CityModel findById(UUID uuid) {
-        return cityRepository.findById(uuid).orElseThrow(() -> new NoResultException("Cidade não encontrada."));
-    }
-
-    public CityModel save(CityModel cityModel) {
-
-        if (cityRepository.existsByCityName(cityModel.getCityName())) {
-            throw new DataAlreadyRegisteredException("Cidade informada já existe no sistema.");
-        }
-
-        return cityRepository.save(cityModel);
-    }
-
-    public CityModel update(CityModel cityModel, UUID uuid) {
-        cityRepository.findById(uuid).orElseThrow(() -> new NoResultException("Cidade informada não existe."));
-        cityModel.setCityId(uuid);
-        cityRepository.save(cityModel);
-        return cityModel;
-    }
-
-    public UUID delete(UUID uuid) {
-        var cityModel = cityRepository.findById(uuid)
-                .orElseThrow(() -> new NoResultException("Cidade não encontrada."));
-        cityRepository.delete(cityModel);
-        return uuid;
-    }
+    UUID delete(UUID uuid);
 }

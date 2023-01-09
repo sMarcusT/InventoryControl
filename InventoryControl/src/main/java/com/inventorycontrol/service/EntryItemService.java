@@ -1,42 +1,19 @@
 package com.inventorycontrol.service;
 
 import com.inventorycontrol.model.EntryItemModel;
-import com.inventorycontrol.repository.EntryItemRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
-@Service
-public class EntryItemService {
+public interface EntryItemService {
+    List<EntryItemModel> findAll();
 
-    private final EntryItemRepository itemRepository;
+    EntryItemModel findById(UUID uuid);
 
-    public List<EntryItemModel> findAll() {
-        return itemRepository.findAll();
-    }
+    EntryItemModel save(EntryItemModel entryItemModel);
 
-    public EntryItemModel findById(UUID uuid) {
-        return itemRepository.findById(uuid).orElseThrow(() -> new NoResultException("Item de entrada não encontrado."));
-    }
+    EntryItemModel update(UUID uuid, EntryItemModel entryItemModel);
 
-    public EntryItemModel save(EntryItemModel entryItemModel) {
-        return itemRepository.save(entryItemModel);
-    }
+    UUID delete(UUID uuid);
 
-    public EntryItemModel update(UUID uuid, EntryItemModel entryItemModel) {
-        itemRepository.findById(uuid).orElseThrow(() -> new NoResultException("Item de entrada não encontrado."));
-        entryItemModel.setEntryItemId(uuid);
-        itemRepository.save(entryItemModel);
-        return entryItemModel;
-    }
-
-    public UUID delete(UUID uuid) {
-        var response = itemRepository.findById(uuid).orElseThrow(() -> new NoResultException("Item de entrada não encontrado."));
-        itemRepository.delete(response);
-        return uuid;
-    }
 }

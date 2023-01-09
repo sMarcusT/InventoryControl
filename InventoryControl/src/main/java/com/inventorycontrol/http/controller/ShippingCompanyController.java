@@ -4,9 +4,8 @@ import com.inventorycontrol.http.controller.interfaces.IShippingCompanyControlle
 import com.inventorycontrol.http.dto.message.MessageError;
 import com.inventorycontrol.http.dto.request.ShippingCompanyRequest;
 import com.inventorycontrol.http.dto.response.ShippingCompanyResponse;
-import com.inventorycontrol.http.mapper.ProductMapper;
 import com.inventorycontrol.http.mapper.ShippingCompanyMapper;
-import com.inventorycontrol.service.ShippingCompanyService;
+import com.inventorycontrol.service.impl.ShippingCompanyServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +20,7 @@ import java.util.UUID;
 @RequestMapping("/shippingCompany")
 public class ShippingCompanyController implements IShippingCompanyController {
 
-    private final ShippingCompanyService service;
+    private final ShippingCompanyServiceImpl service;
 
     @GetMapping("/findAll")
     public ResponseEntity<List<ShippingCompanyResponse>> findAll() {
