@@ -44,6 +44,10 @@ public class ExitController implements IExitController {
 
     @DeleteMapping("/delete/{uuid}")
     public ResponseEntity<MessageError> delete(UUID uuid) {
-        return null;
+        exitService.delete(uuid);
+        var messageError = new MessageError();
+        messageError.setMessage("Saída deletada com sucesso!");
+        messageError.setStatusCode(200);
+        return ResponseEntity.ok().body(messageError);
     }
 }
